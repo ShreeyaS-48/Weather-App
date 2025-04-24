@@ -1,0 +1,83 @@
+.main{
+    position: relative;
+}
+.toastNotifications__container {
+    position: absolute;
+    top: 80px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    overflow: hidden;
+    height: 80px;
+    width: 200px;
+    padding: 5px;
+    @include mq(425px) {
+        width: 300px;
+    }
+    @include mq(786px) {
+        width: 400px;
+        top: 100px;
+        height: 150px;
+    }
+
+    .notification {
+        background-color: $button-textcolor;
+        height: 70px;
+        width: 190px;
+        margin: 5px;
+        color: blue;
+        @include flexCenter;
+        position: relative;
+        justify-content: space-evenly;
+        padding: 0.5rem;
+        i {
+            font-size: 1.2rem;
+        }
+        @include mq(425px) {
+            width: 290px;
+        }
+        @include mq(786px) {
+            width: 390px;
+            height: 150px;
+            font-size: 1.5rem;
+            i {
+                font-size: 1.75rem;
+            }
+        }
+        transform: translateX(110%);
+        animation: moveLeft 0.5s linear 1s forwards;        
+    }
+
+    @keyframes moveLeft {
+        100%{
+            transform: translateX(0);
+        }
+    }
+
+    .notification::after{
+        content: "";
+        height: 7px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: blue;
+        animation: slide 5s linear 0.75s forwards;
+    }
+
+    .notification.heat {
+        color: red;
+    }
+
+    .notification.heat::after {
+        background-color: red;
+    }
+
+    @keyframes slide {
+        100%{
+            width: 0;
+        }
+    }
+
+}

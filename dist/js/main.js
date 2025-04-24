@@ -1,6 +1,7 @@
 import CurrentLocation from "./CurrentLocation.js";
 import { addSpinner , displayError, displayApiError, setPlaceholderText, updateScreenReaderConfirmation, updateDisplay} from "./domFunctions.js";
-import { setLocationObject, getHomeLocation, getWeatherFromCoords, cleanText, getCoordsFromApi } from "./dataFunctions.js";
+import { setLocationObject, getHomeLocation, getAQIFromCoords, getWeatherFromCoords, cleanText, getCoordsFromApi } from "./dataFunctions.js";
+import { generateNotification } from "./toastNotifications.js";
 const currentLoc = new CurrentLocation();
 const initApp = () => {
     const geoButton = document.getElementById("getLocation");
@@ -133,5 +134,9 @@ const submitNewLocation = async (event) => {
 
 const updateDataAndDisplay = async (locationObj) => {
     const weatherJson = await getWeatherFromCoords(locationObj);
-    if(weatherJson) updateDisplay(weatherJson, locationObj);
+    const aqiJson = await getAQIFromCoords(locationObj);
+    if(weatherJson && aqiJson) {
+        updateDisplay(weatherJson, aqiJson, locationObj);
+        generateNotification(weatherJson, aqiJson, locationObj);
+    }
 };

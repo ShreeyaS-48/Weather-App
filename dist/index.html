@@ -28,9 +28,10 @@
         <a href="#currentForecast" class="skip-link">Skip to Current Conditions</a>
         <section class="currentForecast fade-in" id="currentForecast" role="region" aria-labelledby="currentForecast__location">
             <h2 id="currentForecast__location" class="currentForecast__location">Current Conditions</h2>
+            <p id="currentForecast__dateTime" class="currentForecast__dateTime">Date And Time</p>
             <div class="currentForecast__conditions" id="currentForecast__conditions"></div>
         </section>
-        <a href="#dailyForecast" class="skip-link">Skip to Six Day Conditions</a>
+        <a href="#dailyForecast" class="skip-link">Skip to Five Day Conditions</a>
         <nav id="navButtons" class="navButtons fade-in">
             <button id="getLocation" class="button" title="Get Location" aria-label="Get the current weather conditions for your current location">
                 <i class="fas fa-map-marker-alt"></i>
@@ -55,10 +56,11 @@
         </nav>
         <hr class="fade-in">
         <section id="dailyForecast" class="dailyForecast fade-in" role="region" aria-labelledby="dailyForecast__title">
-            <h2 id="dailyForecast__title" class="dailyForecast__title offscreen">Six Day Forecast</h2>
+            <h2 id="dailyForecast__title" class="dailyForecast__title offscreen">Five Day Forecast</h2>
             <div id="dailyForecast__contents" class="dailyForecast__contents"></div>
         </section>
         <p id="confirmation" class="offscreen" aria-live="assertive"></p>
+        <div class="toastNotifications__container" id="toastNotifications__container"></div>
     </main>
 </body>
 </html>
