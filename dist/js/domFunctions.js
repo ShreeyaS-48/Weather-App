@@ -256,18 +256,21 @@ const displayFiveDayForecast = (weatherJson) => {
                 temp.push(Math.round(Number(weatherJson.list[k].main.temp_min)));
                 temp.push(Math.round(Number(weatherJson.list[k].main.temp_max)));
             }
-        const dfArray = createDailyForecastDivs(weatherJson.list[j], Math.max(...temp), Math.min(...temp));
+        const lat = weatherJson.city.coord.lat;
+        const lon = weatherJson.city.coord.lon;
+        const dfArray = createDailyForecastDivs(lat, lon, weatherJson.list[j], Math.max(...temp), Math.min(...temp));
         displayDailyForecast(dfArray);
     }
 };
 
-const createDailyForecastDivs = (dayWeather, max_temp, min_temp) => {
+const createDailyForecastDivs = (lat, lon ,dayWeather, max_temp, min_temp) => {
+    const date = dayWeather.dt_txt.slice(0,dayWeather.dt_txt.indexOf(" "));
     const dayAbbreviationText = getDayAbbreviation(dayWeather.dt);
     const dayAbbreviation = createElem("p", "dayAbbreviation", dayAbbreviationText);
     const dayIcon = createDailyForecastIcon(dayWeather.weather[0].icon.slice(0,2)+"d", dayWeather.weather[0].description);
     const dayHigh =  createElem("p", "dayHigh", `${max_temp}°`);
     const dayLow =  createElem("p", "dayLow", `${min_temp}°`);
-    return [dayAbbreviation, dayIcon, dayHigh, dayLow];
+    return [date, lat,lon, dayAbbreviation, dayIcon, dayHigh, dayLow];
 };
 
 const getDayAbbreviation = (data) => {
@@ -288,10 +291,36 @@ const createDailyForecastIcon = (icon, altText)=> {
 };
 
 const displayDailyForecast = (dfArray) => {
-    const dayDiv = createElem("div", "forecastDay");
+    const dayDiv = createElem("a", "forecastDay");
+    const date = dfArray.shift();
+    const lat = dfArray.shift();
+    const lon = dfArray.shift();
     dfArray.forEach(el => {
         dayDiv.appendChild(el);
+        dayDiv.classList.add(date);
+        dayDiv.href = `./hourlyForecast.html?date=${date}&lat=${lat}&lon=${lon}`;
     });
     const dailyForecastContainer = document.getElementById("dailyForecast__contents");
     dailyForecastContainer.appendChild(dayDiv);
+};
+
+export const displayThreeHourForecast = (weatherArray) => {
+    weatherArray.forEach(item => {
+        createThreeHourForecastDivs(item);
+    });
+}
+const createThreeHourForecastDivs = (item)=>{
+    const container = document.getElementById("threeHourForecast__conditions");
+    const threeHourForecast__div = createElem("div", "threeHourForecast__div");
+    const time = createElem("div", "time", item.dt_txt.slice(item.dt_txt.indexOf(" ")+1));
+    const temp = createElem("div", "temperature", `Temp ${Math.round(Number(item.main.temp))}°`);
+    const properDesc = toProperCase(item.weather[0].description);
+    const desc = createElem("div", "desc", properDesc);
+    const humidity = createElem("div", "humidity", `Humidity ${Math.round(Number(item.main.humidity))}%`);
+    const wind = createElem("div", "wind", `Wind ${Math.round(Number(item.wind.speed))}m/s`);
+    const pressure = createElem("div", "pressure", `Pressure ${item.main.pressure}hPa`);
+    const icon = createDailyForecastIcon(item.weather[0].icon,item.weather[0].description );
+    const forecastArray = [time, temp, desc, humidity, wind, pressure,icon];
+    forecastArray.forEach(el => threeHourForecast__div.appendChild(el));
+    container.appendChild(threeHourForecast__div);
 };

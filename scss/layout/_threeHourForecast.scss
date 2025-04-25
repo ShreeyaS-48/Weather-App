@@ -1,0 +1,75 @@
+.threeHourForecast{
+    @include flexCenter;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0.25rem;
+    .threeHourForecast__date{
+        font-size: 1rem;
+        text-align: center;
+
+        @include mq(786px) {
+            font-size: 1.3rem;
+        }
+        @include mqh(750px){
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+        }
+    }
+
+    .threeHourForecast__conditions{
+        @include flexCenter;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.25rem;
+        flex-grow: 1;
+        width: 100%;
+        .threeHourForecast__div{
+            width: 100%;
+            padding: 0.25rem;
+            flex-grow: 1;
+            display: grid;
+            border-bottom: 1px solid $bordercolor;
+            grid-template-columns: repeat(2, 1fr);
+            .time {
+                grid-column: 1 / span 1;
+                grid-row: 1 / span 1;
+            }
+
+            .desc {
+                grid-column: 1 / span 1;
+                grid-row: 2 / span 1;
+            }
+
+            img {
+                width: 25px;
+                height: 25px;
+                grid-column: 1 / span 1;
+                grid-row: 3 / span 2;
+                @include mqh(1000px){
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+
+            .temperature {
+                grid-column: 2 / span 1;
+                grid-row: 1 / span 1;
+            }
+
+            .humidity {
+                grid-column: 2 / span 2;
+                grid-row: 2 / span 1;
+            }
+
+            .wind {
+                grid-column: 2 / span 2;
+                grid-row: 3 / span 1;
+            }
+
+            .pressure {
+                grid-column: 2 / span 2;
+                grid-row: 4 / span 1;
+            }
+        }
+    }
+}

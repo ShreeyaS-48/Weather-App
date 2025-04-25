@@ -21,7 +21,7 @@
 
     .currentForecast__conditions {
         width: 100%;
-        font-size: 1.1rem;
+        font-size: 1rem;
         margin: auto auto 2rem;
         display: grid;
         @include mq(375px) {
@@ -145,9 +145,9 @@
             padding-top: 0.5rem;
             font-weight: normal;
             color: $fadecolor;
-            @include mqMaxWMinH(1024px, 650px) {
-               @include flexCenter;
-            }
+            @include mqMaxWMinH(786px, 800px) {
+                @include flexCenter;
+             }
             @include mqh(1080px) {
                 @include flexCenter;
             }
@@ -160,9 +160,9 @@
             padding-top: 0.5rem;
             font-weight: normal;
             color: $fadecolor;
-            @include mqMaxWMinH(1024px, 650px) {
-               @include flexCenter;
-            }
+            @include mqMaxWMinH(786px, 800px) {
+                @include flexCenter;
+             }
             @include mqh(1080px) {
                 @include flexCenter;
             }
@@ -175,10 +175,10 @@
             padding-top: 0.5rem;
             font-weight: normal;
             color: $fadecolor;
-            @include mqMaxWMinH(1024px, 650px) {
-               @include flexCenter;
-            }
-            @include mqh(1000px) {
+            @include mqMaxWMinH(786px, 800px) {
+                @include flexCenter;
+             }
+            @include mqh(1080px) {
                 @include flexCenter;
             }
         }

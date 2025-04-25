@@ -139,4 +139,7 @@ const updateDataAndDisplay = async (locationObj) => {
         updateDisplay(weatherJson, aqiJson, locationObj);
         generateNotification(weatherJson, aqiJson, locationObj);
     }
+    console.log(weatherJson);
+    console.log(aqiJson);
+
 };

@@ -16,6 +16,7 @@
         padding: 0.5rem 0;
 
         .forecastDay {
+            padding: 0.25rem;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
@@ -23,8 +24,21 @@
             font-size: 0.9 rem;
             @include mq(375px) {
                 font-size: 1rem;
+                padding: 0.5rem;
             }
-
+            @include mq(425px) {
+                padding: 0 0.75rem;
+            }
+            background-color: $mask-color;
+            border-radius: 5px;
+        }
+        .forecastDay:any-link {
+            color: $font-color;
+            text-decoration: none;
+        }
+        .forecastDay:hover, .forecastDay:focus {
+            color: $fadecolor;
+            cursor: pointer;
         }
     }
 }

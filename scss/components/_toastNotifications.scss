@@ -65,15 +65,6 @@
         background-color: blue;
         animation: slide 5s linear 0.75s forwards;
     }
-
-    .notification.heat {
-        color: red;
-    }
-
-    .notification.heat::after {
-        background-color: red;
-    }
-
     @keyframes slide {
         100%{
             width: 0;
