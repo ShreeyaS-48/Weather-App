@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <script src="js/main.js" type="module"></script>
 </head>
 <body>
@@ -19,6 +20,10 @@
             <form id="searchBar__form" class="searchBar__form" role="search">
                 <label for="searchBar__text" class="offscreen">Enter a new location</label>
                 <input id="searchBar__text" class="searchBar__text" type="text" role="searchbox" size="40" autocomplete="off" placeholder="City, State, Country">
+                <button id="searchBar__mic"class="searchBar__mic button" title="Sumbit Location" aria-label="Enter Zip Code or City, State and Country to retrieve weather conditions">
+                    <i class="fas fa-microphone"></i>
+                    <i class="fas fa-sync fa-spin none"></i>
+                </button>
                 <button id="searchBar__button"class="searchBar__button button" title="Sumbit Location" aria-label="Enter Zip Code or City, State and Country to retrieve weather conditions">
                     <i class="fa fa-search"></i>
                     <i class="fas fa-sync fa-spin none"></i>

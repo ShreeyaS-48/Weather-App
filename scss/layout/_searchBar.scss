@@ -36,6 +36,17 @@
             box-shadow: none;
             text-shadow: 4px 2px 5px $text-shadow-color;
         }
+        
+        .searchBar__mic{
+            border-color: none;
+            i {
+                font-size: 1.7rem;
+            }
+        }
+
+        .searchBar__mic:hover, .searchBar__mic:focus{
+            box-shadow: none;
+        }
     }
 }
 

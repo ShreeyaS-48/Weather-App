@@ -16,6 +16,8 @@ const initApp = () => {
     refreshButton.addEventListener("click", refreshWeather);
     const locationEntry = document.getElementById("searchBar__form");
     locationEntry.addEventListener("submit", submitNewLocation);
+    const micButton = document.getElementById("searchBar__mic");
+    micButton.addEventListener("click", voiceSearch);
     setPlaceholderText();
     loadWeather();
 };
@@ -132,6 +134,32 @@ const submitNewLocation = async (event) => {
     }
 };
 
+const voiceSearch = (event) => {
+    const locationIcon = document.querySelector(".fa-microphone");
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+        addSpinner(locationIcon);
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        const inputField = document.getElementById("searchBar__text")
+        recognition.start();
+        recognition.addEventListener("result", (event) => {
+            const spokenText = event.results[0][0].transcript;
+            inputField.value = spokenText;
+            document.getElementById("searchBar__form").dispatchEvent(new Event("submit"));
+          });
+        recognition.addEventListener("error", (event) => {
+            console.error("Speech recognition error:", event.error);
+        });
+    }
+    else{
+        console.warn("Speech Recognition not supported in this browser.");
+    }
+}
+
+
 const updateDataAndDisplay = async (locationObj) => {
     const weatherJson = await getWeatherFromCoords(locationObj);
     const aqiJson = await getAQIFromCoords(locationObj);
@@ -139,7 +167,4 @@ const updateDataAndDisplay = async (locationObj) => {
         updateDisplay(weatherJson, aqiJson, locationObj);
         generateNotification(weatherJson, aqiJson, locationObj);
     }
-    console.log(weatherJson);
-    console.log(aqiJson);
-
 };

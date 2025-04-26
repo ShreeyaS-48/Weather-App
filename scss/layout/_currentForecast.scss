@@ -168,6 +168,13 @@
             }
         }
 
+        .aqi:any-link{
+            text-decoration: none;
+        }
+        .aqi:hover, .aqi:focus{
+            color: $font-color;
+            text-decoration: underline;
+        }
         .visibility {
             display: none;
             grid-row: 10 / span 1;

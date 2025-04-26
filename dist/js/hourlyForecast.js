@@ -20,14 +20,12 @@ const loadThreeHourForecast = async () => {
     location.textContent = `${date}`;
     const weatherJson = await getWeatherFromCoords(currentLoc);
     if(weatherJson) {
-        console.log(weatherJson);
         let weatherArray = [];
         weatherJson.list.forEach(item => {
             if(item.dt_txt.slice(0,item.dt_txt.indexOf(" ")) === date){
                 weatherArray.push(item);
             }
         });
-        console.log(weatherArray);
         displayThreeHourForecast(weatherArray);
     }
 };

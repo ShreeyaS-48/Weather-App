@@ -154,7 +154,8 @@ const createCurrentConditionsDivs = (weatherObj, aqiObj, unit) => {
     const humidity = createElem("div", "humidity", `Humidity ${Math.round(Number(weatherObj.list[0].main.humidity))}%`);
     const wind = createElem("div", "wind", `Wind ${Math.round(Number(weatherObj.list[0].wind.speed))}${windUnit}`);
     const pressure = createElem("div", "pressure", `Pressure ${weatherObj.list[0].main.pressure}hPa`);
-    const aqi = createElem("div", "aqi", `AQI ${aqiObj.list[0].main.aqi}`);
+    const aqi = createElem("a", "aqi", `AQI ${aqiObj.list[0].main.aqi}`);
+    aqi.href = `./aqi.html?date=${weatherObj.list[0].dt_txt.slice(0,weatherObj.list[0].dt_txt.indexOf(" "))}&lat=${weatherObj.city.coord.lat}&lon=${weatherObj.city.coord.lon}`;
     const visibility = createElem("div", "visibility", `Visibility ${Math.round(Number(weatherObj.list[0].visibility)/1000)}km`);
     return [icon, temp, desc, feels, maxTemp, minTemp, humidity, wind, pressure, aqi, visibility];
 };
@@ -173,7 +174,7 @@ const createElem = (elemType, divClassName, divText, unit) => {
     const div = document.createElement(elemType);
     div.className = divClassName;
     if (divText) {
-        div.textContent = divText;
+        div.innerHTML = divText;
     }
     if (divClassName === "temp") {
         const unitDiv = document.createElement("div");
@@ -323,4 +324,38 @@ const createThreeHourForecastDivs = (item)=>{
     const forecastArray = [time, temp, desc, humidity, wind, pressure,icon];
     forecastArray.forEach(el => threeHourForecast__div.appendChild(el));
     container.appendChild(threeHourForecast__div);
+};
+
+export const displayAirQualityDetails = (aqiJson) => {
+    createAirQualityDetailsDivs(aqiJson);
+}
+
+const createAirQualityDetailsDivs = (aqiJson)=>{
+    const container = document.getElementById("airQuality__conditions");
+    const aqiIndex = createElem("div", "aqi", `AQI: ${Number(aqiJson.list[0].main.aqi)}`);
+    const pollutants = createElem("div", "pollutants");
+    const name = createElem("div", "name", `Pollutant`);
+    const value = createElem("div", "value", `Concentration in μg/m<sup>3</sup>`);
+    const coname = createElem("div", "co name", `CO:`);
+    const covalue= createElem("div", "co value", `${Number(aqiJson.list[0].components.co)}`);
+    const nh3name = createElem("div", "nh3 name", `NH<sub>3</sub>:`);
+    const nh3value = createElem("div", "nh3 value", `${Number(aqiJson.list[0].components.nh3)}`);
+    const noname = createElem("div", "no name", `NO:`);
+    const novalue = createElem("div", "no value", `${Number(aqiJson.list[0].components.no)}`);
+    const no2name = createElem("div", "no2 name", `NO<sub>2</sub>:`);
+    const no2value = createElem("div", "no2 value", `${Number(aqiJson.list[0].components.no2)}`);
+    const o3name = createElem("div", "o3 name", `O<sub>3</sub>:`);
+    const o3value = createElem("div", "o3 value", `${Number(aqiJson.list[0].components.o3)}`);
+    const pm25name = createElem("div", "pm2_5 name", `PM<sub>2.5</sub>:`);
+    const pm25value = createElem("div", "pm2_5 value", `${Number(aqiJson.list[0].components.pm2_5)}`);
+    const pm10name = createElem("div", "pm10 name", `PM<sub>10</sub>:`);
+    const pm10value = createElem("div", "pm10 value", `${Number(aqiJson.list[0].components.pm10)}`);
+    const so2name = createElem("div", "so2 name", `SO<sub>2</sub>:`);
+    const so2value = createElem("div", "so2 value", `${Number(aqiJson.list[0].components.so2)}`);
+    const pollutantsArray = [name, value, coname, covalue, nh3name, nh3value, noname, novalue, no2name, no2value, o3name, o3value, pm25name, pm25value, pm10name, pm10value, so2name, so2value];
+    pollutantsArray.forEach(el => {
+        pollutants.appendChild(el);
+    });
+    container.appendChild(aqiIndex);
+    container.appendChild(pollutants);
 };

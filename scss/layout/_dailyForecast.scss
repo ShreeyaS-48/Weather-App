@@ -37,8 +37,11 @@
             text-decoration: none;
         }
         .forecastDay:hover, .forecastDay:focus {
-            color: $fadecolor;
             cursor: pointer;
+
+            .dayAbbreviation{
+                text-decoration: underline;
+            }
         }
     }
 }

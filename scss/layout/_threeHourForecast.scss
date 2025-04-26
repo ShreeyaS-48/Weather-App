@@ -24,13 +24,17 @@
         flex-grow: 1;
         width: 100%;
         .threeHourForecast__div{
+            font-weight: 400;
             width: 100%;
             padding: 0.25rem;
             flex-grow: 1;
             display: grid;
             border-bottom: 1px solid $bordercolor;
+            box-shadow: 0 1px 1px $shadow-color;
+            background-color: $mask-color;
             grid-template-columns: repeat(2, 1fr);
             .time {
+                font-weight:500 ;
                 grid-column: 1 / span 1;
                 grid-row: 1 / span 1;
             }
