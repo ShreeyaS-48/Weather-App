@@ -71,7 +71,7 @@ export const getAQIFromCoords = async (locationObj) => {
     try{
         const aqiStream = await fetch('./.netlify/functions/get_aqi',{
             method: "POST",
-            body: JSON.strigify(urlDataObj)
+            body: JSON.stringify(urlDataObj)
         });
         const aqiJson = await aqiStream.json();
         return aqiJson;
