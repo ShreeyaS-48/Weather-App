@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 const { WEATHER_API_KEY } = process.env;
 
 
-exports.handler = async (event, context) =>{
+export const handler = async (event, context) =>{
     const params = JSON.parse(event.body);
     const { text, units } = params;
     const regex = /^\d+$/g;
