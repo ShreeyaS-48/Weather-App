@@ -20,7 +20,6 @@ const loadAirQualityDetails = async () => {
     location.textContent = `Lat: ${lat.indexOf("-") === -1 ? lat.slice(0,5) : lat.slice(0,6)} • Long: ${lon.indexOf("-") === -1 ? lon.slice(0,5) : lon.slice(0,6)}`;
     const aqiJson = await getAQIFromCoords(currentLoc);
     if(aqiJson) {
-        console.log(aqiJson);
         displayAirQualityDetails(aqiJson);
     }
 };

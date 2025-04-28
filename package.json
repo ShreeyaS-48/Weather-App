@@ -2,6 +2,7 @@
   "name": "weatherapp",
   "version": "1.0.0",
   "description": "Weather App built with Vanilla Javascript, HTML, and SCSS. The app displays current weather data and 5 day forecast from any city or geolocation. This project uses the Open Weather Map API to retrieve weather data and displays a mobile first responsive web design. The app also features accessibility considerations, the geolocation API, persistent data storage, the Fetch API with Async / Await, toast notifications.",
+  "type": "module", 
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

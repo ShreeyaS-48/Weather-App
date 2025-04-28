@@ -36,7 +36,11 @@ const toProperCase = (text) => {
 }
 
 const updateWeatherLocationHeader = (message) => {
+    const conditions = document.getElementById("currentForecast__conditions");
+    const dateTime = document.getElementById("currentForecast__dateTime");
     const h1 = document.getElementById("currentForecast__location");
+    conditions.style.display = "grid";
+    dateTime.style.display = "block";
     if(message.indexOf("Lat:") !== -1 && message.indexOf("Long:") !== -1) {
         const msgArray = message.split(" ");
         const mapArray = msgArray.map(msg => {
@@ -45,6 +49,10 @@ const updateWeatherLocationHeader = (message) => {
         const lat = mapArray[0].indexOf("-") === -1 ? mapArray[0].slice(0,10) : mapArray[0].slice(0,11);
         const lon = mapArray[1].indexOf("-") === -1 ? mapArray[1].slice(0,11) : mapArray[1].slice(0,12);
         h1.textContent = `${lat} • ${lon}`;
+    } else if(message === "City Not Found" || message === "Connection Error"){
+        h1.textContent = message;
+        conditions.style.display = "none";
+        dateTime.style.display = "none";
     } else {
         h1.textContent = message;
     }

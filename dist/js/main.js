@@ -111,9 +111,11 @@ const submitNewLocation = async (event) => {
     event.preventDefault();
     const text = document.getElementById("searchBar__text").value;
     const entryText = cleanText(text);
+    document.getElementById("searchBar__text").value = "";
+    setPlaceholderText();
     if(!entryText.length) return;
-    const locationIcon = document.querySelector(".fa-search");
-    addSpinner(locationIcon);
+    const searchIcon = document.querySelector(".fa-search");
+    addSpinner(searchIcon);
     const coordsData = await getCoordsFromApi(entryText, currentLoc.getUnit());
     if(coordsData){
         if(coordsData.cod === 200) {
@@ -135,22 +137,25 @@ const submitNewLocation = async (event) => {
 };
 
 const voiceSearch = (event) => {
-    const locationIcon = document.querySelector(".fa-microphone");
+    const input = document.getElementById("searchBar__text");
+    input.placeholder = "Listening...";
+    const micIcon = document.querySelector(".fa-microphone");
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (SpeechRecognition) {
-        addSpinner(locationIcon);
         const recognition = new SpeechRecognition();
         recognition.lang = 'en-US';
         recognition.interimResults = false;
         recognition.maxAlternatives = 1;
         const inputField = document.getElementById("searchBar__text")
         recognition.start();
+        addSpinner(micIcon);
         recognition.addEventListener("result", (event) => {
             const spokenText = event.results[0][0].transcript;
             inputField.value = spokenText;
             document.getElementById("searchBar__form").dispatchEvent(new Event("submit"));
           });
         recognition.addEventListener("error", (event) => {
+            setPlaceholderText();
             console.error("Speech recognition error:", event.error);
         });
     }
