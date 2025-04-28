@@ -1,1 +1,7 @@
-Weather App built with Vanilla Javascript, HTML, and SCSS. The app displays current weather data and 5 day forecast from any city or geolocation. This project uses the Open Weather Map API to retrieve weather data and displays a mobile first responsive web design. The app also features accessibility considerations, the geolocation API, persistent data storage, the Fetch API with Async / Await, toast notifications.
+# Responsive Weather Forecast App
+-Web-based weather application to display current weather conditions, a 5-day forecast air quality data user's location or any searched location using Vanilla JavaScript (ES6+), SCSS, and the OpenWeatherMap REST APIs.
+-Integrated the Geolocation API to detect the user’s location and implemented voice search functionality using the Web Speech API.
+-Leveraged serverless functions to securely interact with external APIs.
+-The app also features screen reader support, mobile first design, persistent data storage, the Fetch API with Async / Await, toast notifications.
+
+
