@@ -20,5 +20,8 @@
   "homepage": "https://github.com/ShreeyaS-48/Weather-App#readme",
   "dependencies": {
     "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
